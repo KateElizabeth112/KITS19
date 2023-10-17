@@ -64,19 +64,21 @@ def reformatFolderStructure():
 
     # rename and copy across the image and the label
     for folder in folders:
-        id = folder[6:]
-        image_name = "case_" + id + "0000.nii.gz"
-        label_name = "case_" + id + ".nii.gz"
+        # check that the folder has a segmentation
+        if os.path.isfile(os.path.join(input_data_dir, folder, "segmentation.nii.gz")):
+            id = folder[6:]
+            image_name = "case_" + id + "_0000.nii.gz"
+            label_name = "case_" + id + ".nii.gz"
 
-        # copy across the image to its new destination
-        src = os.path.join(input_data_dir, folder, "imaging.nii.gz")
-        dest = os.path.join(output_data_dir, image_name)
-        shutil.copy(src, dest)
+            # copy across the image to its new destination
+            src = os.path.join(input_data_dir, folder, "imaging.nii.gz")
+            dest = os.path.join(output_data_dir, image_name)
+            shutil.copy(src, dest)
 
-        # copy across the label to its new destination
-        src = os.path.join(input_data_dir, folder, "segmentation.nii.gz")
-        dest = os.path.join(output_label_dir, label_name)
-        shutil.copy(src, dest)
+            # copy across the label to its new destination
+            src = os.path.join(input_data_dir, folder, "segmentation.nii.gz")
+            dest = os.path.join(output_label_dir, label_name)
+            shutil.copy(src, dest)
 
 
 def main():
