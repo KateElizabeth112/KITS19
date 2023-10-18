@@ -13,7 +13,7 @@ source activate nnUNetv2
 python -c "import torch;print(torch.cuda.is_available())"
 
 # Set environment variables
-ROOT_DIR='/rds/general/user/kc2322/projects/cevora_phd/live/kits19'
+ROOT_DIR='/rds/general/user/kc2322/projects/cevora_phd/live/kits19/'
 DATASET='Dataset500_Fold0'
 TASK=500
 
