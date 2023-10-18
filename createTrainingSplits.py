@@ -137,9 +137,9 @@ def copy_images(dataset_name, ids_tr, ids_ts):
 
     # copy over the files from Training Set
     for subject in list(ids_tr):
-        print("Case {}".format(subject[6:]))
-        img_name = "case_" + subject[6:] + "_0000.nii.gz"
-        lab_name = "case_" + subject[6:] + ".nii.gz"
+        print("Case {}".format(subject))
+        img_name = "case_" + subject + "_0000.nii.gz"
+        lab_name = "case_" + subject + ".nii.gz"
 
         # Copy across images
         shutil.copyfile(os.path.join(input_images_folder, img_name), os.path.join(output_imagesTr, img_name))
@@ -149,8 +149,8 @@ def copy_images(dataset_name, ids_tr, ids_ts):
 
     # copy over the files from Test Set
     for subject in list(ids_ts):
-        img_name = "case_" + subject[6:] + "_0000.nii.gz"
-        lab_name = "case_" + subject[6:] + ".nii.gz"
+        img_name = "case_" + subject + "_0000.nii.gz"
+        lab_name = "case_" + subject + ".nii.gz"
 
         # Copy across images
         shutil.copyfile(os.path.join(input_images_folder, img_name), os.path.join(output_imagesTs, img_name))
