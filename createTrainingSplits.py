@@ -130,10 +130,14 @@ def copy_images(dataset_name, ids_tr, ids_ts):
     output_imagesTs = os.path.join(output_folder, dataset_name, "imagesTs")
     output_labelsTs = os.path.join(output_folder, dataset_name, "labelsTs")
 
-    os.mkdir(output_imagesTr)
-    os.mkdir(output_labelsTr)
-    os.mkdir(output_imagesTs)
-    os.mkdir(output_labelsTs)
+    if not (os.path.exists(output_imagesTr)):
+        os.mkdir(output_imagesTr)
+    if not (os.path.exists(output_labelsTr)):
+        os.mkdir(output_labelsTr)
+    if not (os.path.exists(output_imagesTs)):
+        os.mkdir(output_imagesTs)
+    if not (os.path.exists(output_labelsTs)):
+        os.mkdir(output_labelsTs)
 
     # copy over the files from Training Set
     for subject in list(ids_tr):
