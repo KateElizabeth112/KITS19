@@ -179,8 +179,8 @@ def sort():
 
 
 def main():
-    generate_folds()
-
+    #generate_folds()
+    sort()
 
 if __name__ == "__main__":
     main()
