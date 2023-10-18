@@ -123,13 +123,15 @@ def generate_folds():
 
 
 def copy_images(dataset_name, ids_tr, ids_ts):
-    os.mkdir(os.path.join(output_folder, dataset_name))
+    if not (os.path.exists(os.path.join(output_folder, dataset_name))):
+        os.mkdir(os.path.join(output_folder, dataset_name))
 
     output_imagesTr = os.path.join(output_folder, dataset_name, "imagesTr")
     output_labelsTr = os.path.join(output_folder, dataset_name, "labelsTr")
     output_imagesTs = os.path.join(output_folder, dataset_name, "imagesTs")
     output_labelsTs = os.path.join(output_folder, dataset_name, "labelsTs")
 
+    # Check if folders already exist
     if not (os.path.exists(output_imagesTr)):
         os.mkdir(output_imagesTr)
     if not (os.path.exists(output_labelsTr)):
