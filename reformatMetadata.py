@@ -4,7 +4,7 @@ import numpy as np
 import pickle as pkl
 import shutil
 
-local = False
+local = True
 if local:
     root_dir = "/Users/katecevora/Documents/PhD/data/KITS19/"
 else:

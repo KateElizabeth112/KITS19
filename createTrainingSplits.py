@@ -10,7 +10,7 @@ local = False
 if local:
     root_folder = "/Users/katecevora/Documents/PhD/data/KITS19"
 else:
-    root_folder = "/rds/general/user/kc2322/home/data/KITS19"
+    root_folder = "/rds/general/user/kc2322/ephemeral/kits19"
 
 input_folder = os.path.join(root_folder, "FullDataset")
 output_folder = os.path.join(root_folder, "nnUNet_raw")
@@ -24,8 +24,23 @@ def generate_folds():
     info = pkl.load(f)
     f.close()
 
-    patients = np.array(info["id"])
-    genders = np.array(info["gender"])       # male = 0, female = 1
+    patients_full = np.array(info["id"])
+    genders_full = np.array(info["gender"])       # male = 0, female = 1
+    patients = []
+    genders = []
+
+    # We need to sort the files in the training folder into male and female ids
+    cases = os.listdir(input_images_folder)
+    for case in cases:
+        if case.endswith(".nii.gz"):
+            id = "case_0" + case[5:9]
+            sex = genders_full[np.where(patients_full == id)[0][0]]
+
+            patients.append(case[5:9])
+            genders.append(sex)
+
+    patients = np.array(patients)
+    genders = np.array(genders)
 
     # split into male and female IDs
     ids_m = patients[genders == 0]
@@ -40,6 +55,8 @@ def generate_folds():
 
     print("Dataset size: {}".format(dataset_size))
     print("Test set size per fold: {}".format(block_size * 2))
+    print("Male ids: {}".format(ids_m.shape[0]))
+    print("Female ids: {}".format(ids_f.shape[0]))
 
     # create 9 training blocks overall (these will form 5 folds)
     blocks_f = []
