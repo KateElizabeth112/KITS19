@@ -42,8 +42,8 @@ def calculate_volumes():
     patients = np.array(info["id"])
     genders = np.array(info["gender"])       # male = 0, female = 1
 
-    ids_m = patients(genders == 0)
-    ids_f = patients(genders == 1)
+    ids_m = patients[genders == 0]
+    ids_f = patients[genders == 1]
 
     for f in f_names:
         if f.endswith(".nii.gz"):
