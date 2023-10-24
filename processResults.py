@@ -47,7 +47,7 @@ def getVolume(pred, gt):
 
 def oneHotEncode(array):
     array_dims = len(array.shape)
-    array_max = 15
+    array_max = n_channels
     one_hot = np.zeros((array_max + 1, array.shape[0], array.shape[1], array.shape[2]))
 
     for i in range(0, array_max + 1):
