@@ -16,7 +16,6 @@ python -c "import torch;print(torch.cuda.is_available())"
 ROOT_DIR='/rds/general/user/kc2322/projects/cevora_phd/live/kits19/'
 
 datasets=("Dataset500_Fold0" "Dataset501_Fold0" "Dataset502_Fold0")
-#tasks=(500 501 502)
 
 export nnUNet_raw=$ROOT_DIR"nnUNet_raw"
 export nnUNet_preprocessed=$ROOT_DIR"nnUNet_preprocessed"
@@ -24,8 +23,6 @@ export nnUNet_results=$ROOT_DIR"nnUNet_results"
 
 for number in {0..2}; do
     DATASET=${datasets[number]}
-    #TASK=${tasks[number]}
-
     TASK=${DATASET:7:3}
 
     # Inference
@@ -37,7 +34,7 @@ for number in {0..2}; do
     echo $INPUT_FOLDER
     echo $OUTPUT_FOLDER
 
-    nnUNetv2_predict -i $INPUT_FOLDER -o $OUTPUT_FOLDER -d $TASK -c 3d_fullres -f all -chk checkpoint_best.pth
+    #nnUNetv2_predict -i $INPUT_FOLDER -o $OUTPUT_FOLDER -d $TASK -c 3d_fullres -f all -chk checkpoint_best.pth
 
     # Run python script to evaluate results
     python3 processResults.py -d $DATASET
