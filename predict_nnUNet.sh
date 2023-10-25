@@ -15,13 +15,13 @@ python -c "import torch;print(torch.cuda.is_available())"
 # Set environment variables
 ROOT_DIR='/rds/general/user/kc2322/projects/cevora_phd/live/kits19/'
 
-datasets=("Dataset700_Fold2" "Dataset701_Fold2" "Dataset702_Fold2")
+datasets=("Dataset701_Fold2" "Dataset702_Fold2")
 
 export nnUNet_raw=$ROOT_DIR"nnUNet_raw"
 export nnUNet_preprocessed=$ROOT_DIR"nnUNet_preprocessed"
 export nnUNet_results=$ROOT_DIR"nnUNet_results"
 
-for number in {0..2}; do
+for number in {0..1}; do
     DATASET=${datasets[number]}
     TASK=${DATASET:7:3}
 
